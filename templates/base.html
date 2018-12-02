@@ -1,0 +1,23 @@
+{% load static %}
+
+<html>
+
+    <head>
+        <link rel="stylesheet" href="{% static 'css/all.css' %}">
+        {% block title%}{% endblock %}
+    </head>
+
+
+    <body>
+        {% block content%}
+
+        {% endblock %}
+    </body>
+
+
+    {% include 'partials/_footer.html' %}
+
+    <script src="{% static 'js/main.js' %} "></script>
+
+
+</html>
