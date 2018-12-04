@@ -2,7 +2,10 @@ from django.db import models
 import string
 import random
 from .utils import code_generator,create_shortcode
+from django.conf import settings
+from django.urls import reverse
 
+SHORT_CODE_MAX = getattr(settings,"SHORTCODE_MAX",15)
 
 class UrlManager(models.Manager):
 
@@ -23,7 +26,7 @@ class UrlManager(models.Manager):
 
 class Url(models.Model):
 
-    url = models.CharField(max_length=255)
+    url = models.CharField(max_length=SHORT_CODE_MAX)
     shorturl = models.CharField(max_length=15,unique=True,blank=True) # Blank Usado para evitar o erro de campo em branco na hora que manda salvar no admin
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -44,4 +47,13 @@ class Url(models.Model):
     #     super(Url,self).save(*args,**kwargs)
 
     def __str__(self):
-        return self.url
+        return str(self.url)
+
+    def __unicode__(self):
+        return str(self.url)
+
+    def get_short_url(self):
+        """can just template variable to object.get_short_url"""
+        url_path = reverse('scode', kwargs={'shorturl': self.shorturl})#host='www', scheme='http'
+        # kwargs shortcode is coming from urls.py name urlpattern
+        return url_path

@@ -91,6 +91,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ROOT_URLCONF = 'kirr.urls'
+#
+ROOT_HOSTCONF = 'kirr.hosts'
+DEFAULT_HOST = 'www' #match name param in hosts
+DEFAULT_REDIRECT_URL = 'www.tirr.com:8000'
+PARENT_HOST = 'tirr.com:8000'
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -119,3 +127,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'kirr/static')
 ]
+
+SHORTCODE_MAX = 255

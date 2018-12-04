@@ -5,6 +5,7 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.Home.as_view(),name="home"),
+    path('<str:shorturl>',views.URLRedirectView.as_view(),name="scode")
 ]
 

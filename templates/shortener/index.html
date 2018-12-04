@@ -5,7 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    Pagina Principal
+    <div style="width:800px; margin: 0 auto;">
+        <h1>Hi There</h1>
+        <form action="." method="POST">
+            {% csrf_token %}
+            <input name="url" type="text" placeholder="Shorten your URL like http://www.site.com" />
+            <input type="submit" value="Shorten" />
+        </form>
+
+    </div>
 {% endblock %}
 
 
